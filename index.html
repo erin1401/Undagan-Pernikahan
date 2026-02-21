@@ -2,310 +2,214 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Undangan Pernikahan IIN & ERFAN</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Undangan Pernikahan Iin & Erfan</title>
 
 <style>
 :root{
-  --sogan:#5a3e2b;
-  --emas:#b08a3c;
-  --hitam:#2a1c14;
-  --emerald1:#0f3d2e;
-  --emerald2:#145c44;
-  --emerald3:#1a7a5a;
+  --sogan:#5a3e2b; --emas:#b08a3c; --hitam:#2a1c14;
+  --em1:#0f3d2e; --em2:#145c44; --em3:#1a7a5a;
 }
-
 *{box-sizing:border-box;font-family:"Times New Roman",serif}
+body{margin:0;overflow:hidden;color:var(--hitam);}
 
-body{
-  margin:0;
-  overflow:hidden;
-  color:var(--hitam);
-}
-
-/* ================= BACKGROUND EMERALD KERATON ================= */
-.bg-keraton{
-  position:fixed;
-  inset:-20%;
-  z-index:-2;
+/* ===== BACKGROUND EMERALD KERATON (GERAK) ===== */
+.bg{
+  position:fixed; inset:-20%; z-index:-3;
   background:
     radial-gradient(circle at 20% 30%, rgba(30,110,80,.45), transparent 40%),
     radial-gradient(circle at 80% 60%, rgba(20,140,100,.35), transparent 45%),
-    repeating-linear-gradient(
-      45deg,
-      rgba(255,255,255,.05),
-      rgba(255,255,255,.05) 6px,
-      transparent 6px,
-      transparent 14px
-    ),
-    linear-gradient(120deg,var(--emerald1),var(--emerald2),var(--emerald3),var(--emerald2));
-  animation:keratonMove 28s ease-in-out infinite alternate;
+    repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 6px,transparent 6px 14px),
+    linear-gradient(120deg,var(--em1),var(--em2),var(--em3),var(--em2));
+  animation:bgMove 26s ease-in-out infinite alternate;
+}
+@keyframes bgMove{
+  0%{transform:scale(1) translate(0,0)}
+  50%{transform:scale(1.08) translate(-40px,-30px)}
+  100%{transform:scale(1.12) translate(40px,30px)}
 }
 
-@keyframes keratonMove{
-  0%{transform:scale(1) translate(0,0);filter:hue-rotate(0deg)}
-  50%{transform:scale(1.08) translate(-40px,-30px);filter:hue-rotate(6deg)}
-  100%{transform:scale(1.12) translate(40px,30px);filter:hue-rotate(-6deg)}
-}
-
-/* ================= PAGE ================= */
+/* ===== PAGE TRANSITION (HIDUP) ===== */
 .page{
-  position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:24px;
-  text-align:center;
-  opacity:0;
-  transform:scale(.95) rotateX(12deg);
-  filter:blur(10px);
-  transition:all 1.6s cubic-bezier(.22,1,.36,1);
+  position:absolute; inset:0; padding:24px;
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; filter:blur(10px);
+  transform:scale(.96) rotateX(14deg);
+  transition:all 1.5s cubic-bezier(.22,1,.36,1);
 }
 .page.active{
-  opacity:1;
-  transform:scale(1) rotateX(0);
-  filter:blur(0);
-  z-index:1;
+  opacity:1; filter:blur(0);
+  transform:scale(1) rotateX(0); z-index:1;
 }
 
-/* ================= ORNAMEN ================= */
-.batik{
-  position:absolute;
-  width:180px;height:180px;border-radius:50%;
-  background:repeating-linear-gradient(
-    45deg,
-    rgba(176,138,60,.25),
-    rgba(176,138,60,.25) 6px,
-    transparent 6px,
-    transparent 12px
-  );
-  animation:alun 12s ease-in-out infinite;
-}
-.b1{top:6%;left:6%}
-.b2{bottom:8%;right:8%;animation-delay:3s}
-.b3{top:18%;right:22%;animation-delay:6s}
-@keyframes alun{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-28px)}
-  100%{transform:translateY(0)}
-}
-
-/* ================= BOX ================= */
+/* ===== BOX ===== */
 .box{
+  position:relative; max-width:360px; padding:28px 24px;
   background:rgba(255,255,255,.92);
-  border-radius:28px;
-  padding:28px 24px;
-  max-width:360px;
-  border:2px solid var(--emas);
+  border-radius:28px; border:2px solid var(--emas);
   box-shadow:0 12px 30px rgba(0,0,0,.18);
+  text-align:center;
 }
 
-/* ================= FOTO ================= */
-.photo{
-  width:200px;height:260px;object-fit:cover;
-  border-radius:22px;margin-bottom:16px;
-  opacity:0;transform:scale(.92);
-  animation:fotoMasuk 2.4s ease forwards;
+/* ===== ORNAMEN BATIK ===== */
+.batik{
+  position:absolute; width:170px; height:170px; border-radius:50%;
+  background:repeating-linear-gradient(45deg,rgba(176,138,60,.25) 0 6px,transparent 6px 12px);
+  animation:float 12s ease-in-out infinite;
 }
-@keyframes fotoMasuk{to{opacity:1;transform:scale(1)}}
+.b1{top:6%;left:6%} .b2{bottom:8%;right:8%;animation-delay:3s}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-24px)}100%{transform:translateY(0)}}
 
-/* ================= TEXT ================= */
+/* ===== WAYANG (ULTIMATE) ===== */
+.wayang{
+  position:absolute; top:50%; width:120px; height:260px;
+  background-size:contain; background-repeat:no-repeat;
+  opacity:.18; pointer-events:none;
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.35));
+  animation:wayangBreath 12s ease-in-out infinite;
+}
+.kiri{left:-18px; transform-origin:left center;}
+.kanan{right:-18px; transform-origin:right center; animation-delay:3s}
+
+/* beda wayang tiap halaman */
+.w1 .kiri{background-image:url("https://upload.wikimedia.org/wikipedia/commons/4/4c/Wayang_Kulit_Pandawa.png")}
+.w1 .kanan{background-image:url("https://upload.wikimedia.org/wikipedia/commons/2/29/Wayang_Kulit_Punakawan.png")}
+.w2 .kiri{background-image:url("https://upload.wikimedia.org/wikipedia/commons/9/9b/Wayang_Kulit_Arjuna.png")}
+.w2 .kanan{background-image:url("https://upload.wikimedia.org/wikipedia/commons/6/6c/Wayang_Kulit_Srikandi.png")}
+.w3 .kiri{background-image:url("https://upload.wikimedia.org/wikipedia/commons/8/84/Wayang_Kulit_Rama.png")}
+.w3 .kanan{background-image:url("https://upload.wikimedia.org/wikipedia/commons/0/0a/Wayang_Kulit_Sinta.png")}
+.w4 .kiri{background-image:url("https://upload.wikimedia.org/wikipedia/commons/1/14/Wayang_Kulit_Bima.png")}
+.w4 .kanan{background-image:url("https://upload.wikimedia.org/wikipedia/commons/7/7b/Wayang_Kulit_Hanoman.png")}
+
+/* napas + ritual */
+@keyframes wayangBreath{
+  0%{transform:translateY(-50%) rotate(-2deg) scale(1)}
+  50%{transform:translateY(-60%) rotate(2deg) scale(1.05)}
+  100%{transform:translateY(-50%) rotate(-2deg) scale(1)}
+}
+
+/* asap dupa */
+.smoke{
+  position:absolute; bottom:-10px; left:50%;
+  width:120px; height:120px; border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.35),transparent 60%);
+  filter:blur(8px); opacity:.35;
+  animation:smoke 8s ease-in-out infinite;
+}
+@keyframes smoke{
+  0%{transform:translate(-50%,0) scale(.9)}
+  50%{transform:translate(-50%,-40px) scale(1.1)}
+  100%{transform:translate(-50%,-80px) scale(.9);opacity:0}
+}
+
+/* ===== TEXT ===== */
 h1{letter-spacing:6px;font-size:20px;color:var(--sogan)}
 h2{color:var(--emas)}
 .nama{font-size:24px;font-weight:bold;color:var(--sogan);line-height:1.4}
-.divider{
-  width:100px;height:2px;
-  background:linear-gradient(90deg,transparent,var(--emas),transparent);
-  margin:18px auto;
-}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--emas),transparent);margin:18px auto}
 
-/* ================= MUSIC ================= */
-.music{
-  position:fixed;
-  bottom:18px;right:18px;
-  width:50px;height:50px;border-radius:50%;
-  background:var(--sogan);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  z-index:10;
-}
+/* ===== FOTO ===== */
+.photo{width:200px;height:260px;object-fit:cover;border-radius:22px;margin-bottom:16px}
 
-/* ================= NAVIGATION ================= */
-.nav{
-  position:fixed;
-  bottom:20px;left:50%;
-  transform:translateX(-50%);
-  display:flex;gap:18px;
-  opacity:0;pointer-events:none;
-  transition:.4s;z-index:10;
-}
+/* ===== MUSIC & NAV ===== */
+.music{position:fixed;bottom:18px;right:18px;width:50px;height:50px;border-radius:50%;background:var(--sogan);color:#fff;display:flex;align-items:center;justify-content:center;z-index:10}
+.nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:18px;opacity:0;pointer-events:none;transition:.4s;z-index:10}
 .nav.show{opacity:1;pointer-events:auto}
-.nav button{
-  width:48px;height:48px;border-radius:50%;
-  border:2px solid var(--emas);
-  background:rgba(255,255,255,.85);
-  color:var(--sogan);
-  font-size:22px;
-}
+.nav button{width:48px;height:48px;border-radius:50%;border:2px solid var(--emas);background:rgba(255,255,255,.85);color:var(--sogan);font-size:22px}
+#ind{position:fixed;top:18px;right:18px;padding:6px 12px;border-radius:14px;background:rgba(255,255,255,.85);border:1px solid var(--emas);font-size:12px;z-index:10}
 
-/* ================= INDICATOR ================= */
-#indicator{
-  position:fixed;
-  top:18px;right:18px;
-  padding:6px 12px;border-radius:14px;
-  background:rgba(255,255,255,.85);
-  border:1px solid var(--emas);
-  font-size:12px;z-index:10;
-}
-
-/* ================= TIRAI ================= */
-#tirai{
-  position:fixed;inset:0;z-index:999;background:#000;
-}
-.tirai{
-  position:absolute;top:0;width:50%;height:100%;
-  background:linear-gradient(90deg,#3a2417,#5a3e2b,#3a2417);
-  transition:transform 3s cubic-bezier(.22,1,.36,1);
-}
-.tirai.kiri{left:0;border-right:3px solid var(--emas)}
-.tirai.kanan{right:0;border-left:3px solid var(--emas)}
-#tirai.open .kiri{transform:translateX(-100%)}
-#tirai.open .kanan{transform:translateX(100%)}
+/* ===== TIRAI ===== */
+#tirai{position:fixed;inset:0;z-index:999;background:#000}
+.t{position:absolute;top:0;width:50%;height:100%;background:linear-gradient(90deg,#3a2417,#5a3e2b,#3a2417);transition:transform 3s cubic-bezier(.22,1,.36,1)}
+.l{left:0;border-right:3px solid var(--emas)} .r{right:0;border-left:3px solid var(--emas)}
+#tirai.open .l{transform:translateX(-100%)} #tirai.open .r{transform:translateX(100%)}
 #tirai.hide{display:none}
-.tirai-ornamen{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  color:#d4af6a;font-size:64px;
-}
+
+/* mobile */
+@media(max-width:420px){.wayang{width:90px;height:200px;opacity:.14}}
 </style>
 </head>
 
 <body>
+<div class="bg"></div>
 
-<div class="bg-keraton"></div>
+<div id="tirai"><div class="t l"></div><div class="t r"></div></div>
 
-<!-- TIRAI -->
-<div id="tirai">
-  <div class="tirai kiri"></div>
-  <div class="tirai kanan"></div>
-  <div class="tirai-ornamen">Wedding Invitation</div>
-</div>
-
-<audio id="music" loop>
-  <source src="musik.mp3" type="audio/mpeg">
-</audio>
+<audio id="music" loop><source src="musik.mp3" type="audio/mpeg"></audio>
 <div class="music" onclick="toggleMusic()">🎵</div>
+<div id="ind">1 / 8</div>
+<div class="nav"><button onclick="prev()">‹</button><button onclick="next()">›</button></div>
 
-<div id="indicator">1 / 8</div>
-
-<div class="nav">
-  <button onclick="prev()">‹</button>
-  <button onclick="next()">›</button>
-</div>
-
-<!-- PAGE 1 : COVER -->
-<section class="page active">
+<!-- PAGE 1 -->
+<section class="page active w1">
   <div class="batik b1"></div><div class="batik b2"></div>
+  <div class="wayang kiri"></div><div class="wayang kanan"></div><div class="smoke"></div>
   <div class="box">
     <img src="foto1.jpg" class="photo">
-    <h1>UNDANGAN</h1>
-    <h2>Pernikahan</h2>
+    <h1>UNDANGAN</h1><h2>Pernikahan</h2>
     <div class="nama">Nur Indrayakni, S.Pd<br>&<br>Muhammad Erfan, S.E</div>
     <p id="guest" style="font-size:13px"></p>
-    <button id="btnOpen" onclick="openInvitation()"
-      style="margin-top:14px;padding:12px 26px;border-radius:24px;
-      border:2px solid var(--emas);background:transparent;color:var(--sogan)">
-      BUKA UNDANGAN
-    </button>
+    <button id="open" onclick="openInv()" style="margin-top:14px;padding:12px 26px;border-radius:24px;border:2px solid var(--emas);background:transparent;color:var(--sogan)">BUKA UNDANGAN</button>
   </div>
 </section>
 
 <!-- PAGE 2 -->
-<section class="page"><div class="box"><i>Kanthi idinipun Gusti Allah, pinanggih pasangan kang sarwa becik.</i></div></section>
+<section class="page w2">
+  <div class="wayang kiri"></div><div class="wayang kanan"></div><div class="smoke"></div>
+  <div class="box"><i>Kanthi idinipun Gusti Allah, pinanggih pasangan kang sarwa becik.</i></div>
+</section>
 
 <!-- PAGE 3 -->
-<section class="page"><div class="box"><h2>Akad Nikah</h2>Sabtu, 04 April 2026<br>08.00 WIB<div class="divider"></div><h2>Resepsi</h2>11.00 – 14.00 WIB</div></section>
+<section class="page w3">
+  <div class="wayang kiri"></div><div class="wayang kanan"></div><div class="smoke"></div>
+  <div class="box"><h2>Akad Nikah</h2>Sabtu, 04 April 2026<br>08.00 WIB<div class="divider"></div><h2>Resepsi</h2>11.00 – 14.00 WIB</div>
+</section>
 
 <!-- PAGE 4 -->
-<section class="page"><div class="box">Mugi pinaringan berkah lan rahayu.</div></section>
+<section class="page w4">
+  <div class="wayang kiri"></div><div class="wayang kanan"></div><div class="smoke"></div>
+  <div class="box">Mugi pinaringan berkah lan rahayu.</div>
+</section>
 
 <!-- PAGE 5 RSVP -->
-<section class="page"><div class="box"><h2>RSVP</h2><input id="rsvpNama" placeholder="Nama"><br><br><select id="rsvpStatus"><option>Hadir</option><option>Tidak Hadir</option></select><br><br><button onclick="kirimRSVP()">Kirim</button></div></section>
+<section class="page w1">
+  <div class="wayang kiri"></div><div class="wayang kanan"></div><div class="smoke"></div>
+  <div class="box"><h2>RSVP</h2><input id="rN" placeholder="Nama"><br><br><select id="rS"><option>Hadir</option><option>Tidak Hadir</option></select><br><br><button onclick="rsvp()">Kirim</button></div>
+</section>
 
-<!-- PAGE 6 BUKU TAMU -->
-<section class="page"><div class="box"><h2>Buku Tamu</h2><input id="guestNama" placeholder="Nama"><br><br><textarea id="guestPesan" placeholder="Ucapan & Doa"></textarea><br><br><button onclick="kirimUcapan()">Kirim</button></div></section>
+<!-- PAGE 6 TAMU -->
+<section class="page w2">
+  <div class="wayang kiri"></div><div class="wayang kanan"></div><div class="smoke"></div>
+  <div class="box"><h2>Buku Tamu</h2><input id="gN" placeholder="Nama"><br><br><textarea id="gP" placeholder="Ucapan & Doa"></textarea><br><br><button onclick="ucap()">Kirim</button></div>
+</section>
 
-<!-- PAGE 7 LOKASI -->
-<section class="page"><div class="box"><h2>Lokasi</h2><a href="https://maps.google.com" target="_blank">Buka Google Maps</a></div></section>
+<!-- PAGE 7 MAP -->
+<section class="page w3">
+  <div class="wayang kiri"></div><div class="wayang kanan"></div><div class="smoke"></div>
+  <div class="box"><h2>Lokasi</h2><a href="https://maps.google.com" target="_blank">Buka Google Maps</a></div>
+</section>
 
 <!-- PAGE 8 GIFT -->
-<section class="page"><div class="box"><h2>Wedding Gift</h2>BCA 1234567890<br>a.n Nur Indrayakni</div></section>
+<section class="page w4">
+  <div class="wayang kiri"></div><div class="wayang kanan"></div><div class="smoke"></div>
+  <div class="box"><h2>Wedding Gift</h2>BCA 1234567890<br>a.n Nur Indrayakni</div>
+</section>
 
 <script>
-let pages=document.querySelectorAll(".page"),
-i=0,total=pages.length,
-nav=document.querySelector(".nav"),
-indicator=document.getElementById("indicator"),
-opened=false;
-const music=document.getElementById("music");
-
-function openInvitation(){
-  opened=true;
-  document.getElementById("btnOpen").style.display="none";
-  music.play();showNav();
-}
-
-function update(){
-  pages.forEach(p=>p.classList.remove("active"));
-  pages[i].classList.add("active");
-  indicator.innerText=(i+1)+" / "+total;
-}
-
-function next(){if(!opened)return;i=(i+1)%total;update();showNav();}
-function prev(){if(!opened)return;i=(i-1+total)%total;update();showNav();}
-function toggleMusic(){music.paused?music.play():music.pause();}
-
-function showNav(){
-  nav.classList.add("show");
-  clearTimeout(nav.timer);
-  nav.timer=setTimeout(()=>nav.classList.remove("show"),2500);
-}
-
-document.addEventListener("click",e=>{
-  if(!opened)return;
-  if(!e.target.closest("button")&&!e.target.closest("input")&&!e.target.closest("textarea")){
-    next();
-  }
-});
-
-let sx=0;
-document.addEventListener("touchstart",e=>sx=e.touches[0].clientX);
-document.addEventListener("touchend",e=>{
-  if(!opened)return;
-  let ex=e.changedTouches[0].clientX;
-  if(sx-ex>50)next();
-  if(ex-sx>50)prev();
-});
-
-window.addEventListener("load",()=>{
-  setTimeout(()=>document.getElementById("tirai").classList.add("open"),800);
-  setTimeout(()=>document.getElementById("tirai").classList.add("hide"),4200);
-});
-
-const q=new URLSearchParams(location.search);
-if(q.get("to"))document.getElementById("guest").innerText="Yth. "+q.get("to");
-
-function kirimRSVP(){
-  let n=rsvpNama.value,s=rsvpStatus.value;
-  if(!n)return alert("Isi nama");
-  window.open(`https://wa.me/6282213629469?text=RSVP:%0ANama:${n}%0AStatus:${s}`);
-}
-function kirimUcapan(){
-  let n=guestNama.value,p=guestPesan.value;
-  if(!n||!p)return alert("Lengkapi");
-  window.open(`https://wa.me/62882213629469?text=Buku Tamu:%0ANama:${n}%0APesan:${p}`);
-}
+let p=[...document.querySelectorAll('.page')],i=0,open=false;
+const nav=document.querySelector('.nav'),ind=document.getElementById('ind'),music=document.getElementById('music');
+function show(){p.forEach(x=>x.classList.remove('active'));p[i].classList.add('active');ind.innerText=(i+1)+' / '+p.length}
+function next(){if(!open)return;i=(i+1)%p.length;show();navShow()}
+function prev(){if(!open)return;i=(i-1+p.length)%p.length;show();navShow()}
+function navShow(){nav.classList.add('show');clearTimeout(nav.t);nav.t=setTimeout(()=>nav.classList.remove('show'),2500)}
+function openInv(){open=true;document.getElementById('open').style.display='none';music.play();navShow()}
+function toggleMusic(){music.paused?music.play():music.pause()}
+document.addEventListener('click',e=>{if(open&&!e.target.closest('button')&&!e.target.closest('input')&&!e.target.closest('textarea'))next()});
+let sx=0;addEventListener('touchstart',e=>sx=e.touches[0].clientX);addEventListener('touchend',e=>{if(!open)return;let ex=e.changedTouches[0].clientX;if(sx-ex>50)next();if(ex-sx>50)prev()});
+addEventListener('load',()=>{setTimeout(()=>document.getElementById('tirai').classList.add('open'),800);setTimeout(()=>document.getElementById('tirai').classList.add('hide'),4200)});
+const q=new URLSearchParams(location.search); if(q.get('to'))document.getElementById('guest').innerText='Yth. '+q.get('to');
+function rsvp(){if(!rN.value)return alert('Isi nama');open(`https://wa.me/6281234567890?text=RSVP:%0ANama:${rN.value}%0AStatus:${rS.value}`)}
+function ucap(){if(!gN.value||!gP.value)return alert('Lengkapi');open(`https://wa.me/6281234567890?text=Buku%20Tamu:%0ANama:${gN.value}%0APesan:${gP.value}`)}
 </script>
-
 </body>
 </html>
