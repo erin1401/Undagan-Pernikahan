@@ -3,105 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Undangan Pernikahan</title>
+<title>Undangan Pernikahan Jawa</title>
 
 <style>
 :root{
-  --krem:#f7f2ea;
-  --biru:#5f7c8a;
-  --gold:#c9a24d;
+  --krem:#f6f1e8;
+  --coklat:#6b4f3f;
+  --emas:#c9a24d;
 }
 
 *{box-sizing:border-box;font-family:'Georgia',serif}
+
 body{
   margin:0;
   background:var(--krem);
   overflow:hidden;
-  color:#333;
+  color:#3a2b20;
 }
 
-/* ===== SLIDER ===== */
-.slider{
-  width:100vw;
-  height:100vh;
+/* HALAMAN */
+.page{
+  position:absolute;
+  inset:0;
   display:flex;
-  transition:transform 1s ease-in-out;
-}
-.slide{
-  min-width:100vw;
-  height:100vh;
-  padding:24px;
-  display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  background:linear-gradient(180deg,var(--krem),#fff);
-  position:relative;
+  padding:24px;
+  opacity:0;
+  transform:scale(.95);
+  filter:blur(6px);
+  transition:all 1.2s ease;
+}
+.page.active{
+  opacity:1;
+  transform:scale(1);
+  filter:blur(0);
+  z-index:1;
 }
 
-/* ===== ORNAMEN ===== */
-.ornament{
+/* ORNAMEN BATIK */
+.batik{
   position:absolute;
-  width:120px;
-  height:120px;
+  width:140px;
+  height:140px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(201,162,77,.25),
+      rgba(201,162,77,.25) 6px,
+      transparent 6px,
+      transparent 12px
+    );
   border-radius:50%;
-  background:radial-gradient(circle,rgba(201,162,77,.35),transparent);
   animation:float 8s infinite ease-in-out;
 }
-.o1{top:10%;left:5%}
-.o2{bottom:15%;right:8%;animation-delay:2s}
-.o3{top:20%;right:15%;animation-delay:4s}
+.b1{top:8%;left:6%}
+.b2{bottom:12%;right:10%;animation-delay:2s}
+.b3{top:18%;right:20%;animation-delay:4s}
 
 @keyframes float{
   0%{transform:translateY(0)}
-  50%{transform:translateY(-25px)}
+  50%{transform:translateY(-22px)}
   100%{transform:translateY(0)}
 }
 
-/* ===== CONTENT ===== */
-h1{letter-spacing:3px;color:var(--biru)}
-h2{color:var(--gold)}
-.names{
-  font-size:24px;
-  font-weight:bold;
-  color:var(--biru);
-}
+/* KONTEN */
 .box{
   background:#fff;
-  border-radius:20px;
-  padding:22px;
-  border:1px solid var(--biru);
+  border-radius:22px;
+  padding:26px;
   max-width:360px;
-}
-.divider{
-  width:90px;height:2px;background:var(--gold);margin:16px auto;
+  border:2px solid var(--emas);
 }
 
-/* ===== BUTTON ===== */
+h1{letter-spacing:4px;color:var(--coklat)}
+h2{color:var(--emas)}
+.nama{
+  font-size:24px;
+  font-weight:bold;
+  color:var(--coklat);
+}
+
+.divider{
+  width:90px;height:2px;background:var(--emas);
+  margin:18px auto;
+}
+
+/* TOMBOL */
 button{
-  margin-top:26px;
+  margin-top:28px;
   padding:14px 30px;
   border:none;
   border-radius:30px;
-  background:var(--biru);
+  background:var(--coklat);
   color:#fff;
   font-size:15px;
 }
 
-/* ===== MUSIC ===== */
+/* MUSIK */
 .music{
   position:fixed;
   bottom:18px;right:18px;
   width:48px;height:48px;
   border-radius:50%;
-  background:var(--biru);
+  background:var(--coklat);
   color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:18px;
-  cursor:pointer;
   z-index:10;
 }
 audio{display:none}
@@ -114,89 +125,70 @@ audio{display:none}
   <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
-<!-- MUSIC TOGGLE -->
 <div class="music" onclick="toggleMusic()">🎵</div>
 
-<!-- SLIDER -->
-<div class="slider" id="slider">
-
-  <!-- SLIDE 1 : COVER -->
-  <section class="slide">
-    <div class="ornament o1"></div>
-    <div class="ornament o2"></div>
-    <div class="ornament o3"></div>
-
+<!-- PAGE 1 -->
+<section class="page active">
+  <div class="batik b1"></div><div class="batik b2"></div><div class="batik b3"></div>
+  <div class="box">
     <h1>UNDANGAN</h1>
     <h2>Pernikahan</h2>
-    <div class="names">
-      Nur Indrayakni, S.Pd<br>&<br>Muhammad Erfan, S.E
+    <div class="nama">
+      Ahmad Rizky Pratama<br>&<br>Aisyah Nur Khalifah
     </div>
     <button onclick="start()">Buka Undangan</button>
-  </section>
+  </div>
+</section>
 
-  <!-- SLIDE 2 : MEMPELAI -->
-  <section class="slide">
-    <div class="ornament o1"></div>
-    <div class="ornament o2"></div>
+<!-- PAGE 2 -->
+<section class="page">
+  <div class="batik b1"></div><div class="batik b2"></div>
+  <div class="box">
+    <i>
+      “Lan saking pratandhaning kakuwasanipun Gusti Allah,
+      Panjenenganipun nitahaken pasangan supados pinanggih katentreman…”
+    </i>
+    <div class="divider"></div>
+    <b>QS. Ar-Rum : 21</b>
+  </div>
+</section>
 
-    <div class="box">
-      <i>“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup…”</i>
-      <div class="divider"></div>
-      <b>QS. Ar-Rum : 21</b>
-      <br><br>
-      <b>Nur Indrayakni, S.Pd</b><br>
-      Putra Bapak Sunarso & Ibu Kartini
-      <div class="divider"></div>
-      <b>AMuhammad Erfan, S.E</b><br>
-      Putri Bapak Drs. Moch Ihsan & Ibu Welia Rulistin
-    </div>
-  </section>
+<!-- PAGE 3 -->
+<section class="page">
+  <div class="batik b2"></div><div class="batik b3"></div>
+  <div class="box">
+    <h2>Akad Nikah</h2>
+    Sabtu, 12 April 2026<br>08.00 WIB
+    <div class="divider"></div>
+    <h2>Resepsi</h2>
+    Sabtu, 12 April 2026<br>11.00 – 14.00 WIB
+  </div>
+</section>
 
-  <!-- SLIDE 3 : ACARA -->
-  <section class="slide">
-    <div class="ornament o2"></div>
-    <div class="ornament o3"></div>
-
-    <div class="box">
-      <h2>Akad Nikah</h2>
-      Sabtu, 04 April 2026<br>
-      08.00 WIB
-      <div class="divider"></div>
-      <h2>Resepsi</h2>
-      Sabtu, 04 April 2026<br>
-      11.00 – 14.00 WIB
-    </div>
-  </section>
-
-  <!-- SLIDE 4 : PENUTUP -->
-  <section class="slide">
-    <div class="ornament o1"></div>
-    <div class="ornament o3"></div>
-
-    <div class="box">
-      Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
-      Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
-      <div class="divider"></div>
-      <b>Iin & Erfan</b><br>
-      Keluarga Besar Kedua Mempelai
-    </div>
-  </section>
-
-</div>
+<!-- PAGE 4 -->
+<section class="page">
+  <div class="batik b1"></div><div class="batik b3"></div>
+  <div class="box">
+    Mugi acara punika pinaringan lancar lan berkah.<br><br>
+    <b>Ahmad & Aisyah</b><br>
+    Keluarga Besar Kedua Mempelai
+  </div>
+</section>
 
 <script>
-let index=0,interval;
-const slider=document.getElementById("slider");
+let pages=document.querySelectorAll(".page");
+let i=0,interval;
 const music=document.getElementById("music");
 
 function start(){
   music.play();
-  interval=setInterval(nextSlide,6000);
+  interval=setInterval(next,6000);
 }
 
-function nextSlide(){
-  index=(index+1)%4;
-  slider.style.transform=`translateX(-${index*100}vw)`;
+function next(){
+  pages[i].classList.remove("active");
+  i=(i+1)%pages.length;
+  pages[i].classList.add("active");
 }
 
 function toggleMusic(){
