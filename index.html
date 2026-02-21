@@ -1,8 +1,260 @@
-<div style="position: relative; width: 100%; height: 0; padding-top: 177.7778%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAHB9e8k2D4/B9YSGaw9LZiEazL-n7P4Vw/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan</title>
+
+<style>
+:root{
+  --krem:#f7f2ea;
+  --biru:#5f7c8a;
+  --gold:#c9a24d;
+}
+
+*{box-sizing:border-box;font-family:'Georgia',serif}
+
+body{
+  margin:0;
+  background:linear-gradient(180deg,var(--krem),#ffffff);
+  color:#333;
+  scroll-behavior:smooth;
+}
+
+.container{
+  max-width:420px;
+  margin:auto;
+  padding:18px;
+  text-align:center;
+}
+
+.cover{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:#fff;
+  border-radius:24px;
+  border:2px solid var(--biru);
+  animation:fadeIn 1.2s ease;
+}
+
+h1{
+  color:var(--biru);
+  letter-spacing:3px;
+  margin:0;
+}
+
+h2{
+  color:var(--gold);
+  margin:12px 0;
+}
+
+.names{
+  font-size:22px;
+  color:var(--biru);
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+button{
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  background:var(--biru);
+  color:#fff;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.section{
+  margin:42px 0;
+  animation:fadeUp 1s ease;
+}
+
+.box{
+  background:#fff;
+  border-radius:18px;
+  padding:20px;
+  border:1px solid var(--biru);
+}
+
+.divider{
+  width:90px;
+  height:2px;
+  background:var(--gold);
+  margin:18px auto;
+}
+
+.countdown{
+  display:flex;
+  justify-content:space-around;
+  margin-top:20px;
+}
+
+.time{
+  background:#fff;
+  border-radius:14px;
+  padding:10px;
+  width:70px;
+  border:1px solid var(--gold);
+}
+
+.time b{
+  font-size:18px;
+  color:var(--biru);
+}
+
+footer{
+  font-size:13px;
+  color:#666;
+  margin-bottom:50px;
+}
+
+.music{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  background:var(--biru);
+  color:#fff;
+  border-radius:50%;
+  width:46px;
+  height:46px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:18px;
+  cursor:pointer;
+}
+
+a.map{
+  display:inline-block;
+  margin-top:14px;
+  padding:10px 18px;
+  border-radius:20px;
+  border:1px solid var(--biru);
+  color:var(--biru);
+  text-decoration:none;
+  font-size:14px;
+}
+
+audio{display:none}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+  <!-- COVER -->
+  <div class="cover" id="cover">
+    <h1>UNDANGAN</h1>
+    <h2>Pernikahan</h2>
+    <div class="names">
+      Ahmad Rizky Pratama<br>&<br>Aisyah Nur Khalifah
+    </div>
+    <button onclick="openInvite()">Buka Undangan</button>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="content" style="display:none">
+
+    <div class="section">
+      <i>
+        “Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup
+        agar kamu merasa tenteram dan dijadikan-Nya di antaramu rasa kasih dan sayang.”
+      </i><br><br>
+      <b>QS. Ar-Rum : 21</b>
+    </div>
+
+    <div class="section box">
+      <h2>Mempelai</h2>
+      <p><b>Ahmad Rizky Pratama</b><br>
+      Putra Bapak H. Sumarno & Ibu Hj. Siti Aminah</p>
+      <div class="divider"></div>
+      <p><b>Aisyah Nur Khalifah</b><br>
+      Putri Bapak H. Abdul Karim & Ibu Hj. Khadijah</p>
+    </div>
+
+    <div class="section box">
+      <h2>Menuju Hari Bahagia</h2>
+      <div class="countdown">
+        <div class="time"><b id="d">0</b><br>Hari</div>
+        <div class="time"><b id="h">0</b><br>Jam</div>
+        <div class="time"><b id="m">0</b><br>Menit</div>
+        <div class="time"><b id="s">0</b><br>Detik</div>
+      </div>
+    </div>
+
+    <div class="section box">
+      <h2>Akad Nikah</h2>
+      Sabtu, 12 April 2026<br>
+      08.00 WIB<br>
+      Masjid Agung Al-Falah<br>
+      <a class="map" href="https://maps.google.com" target="_blank">📍 Lihat Lokasi</a>
+    </div>
+
+    <div class="section box">
+      <h2>Resepsi</h2>
+      Sabtu, 12 April 2026<br>
+      11.00 – 14.00 WIB<br>
+      Gedung Graha Harmoni<br>
+      <a class="map" href="https://maps.google.com" target="_blank">📍 Lihat Lokasi</a>
+    </div>
+
+    <footer>
+      Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
+      Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+      <br><br>
+      <b>Ahmad & Aisyah</b><br>
+      Keluarga Besar Kedua Mempelai
+    </footer>
+
+  </div>
 </div>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAHB9e8k2D4&#x2F;B9YSGaw9LZiEazL-n7P4Vw&#x2F;watch?utm_content=DAHB9e8k2D4&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Krem Biru Elegan Bunga Estetis Tradisional Jawa Undangan Pernikahan Video Seluler</a> oleh Muhammad Erfan
+
+<div class="music" onclick="toggleMusic()">🎵</div>
+
+<script>
+const music = document.getElementById("music");
+
+function openInvite(){
+  document.getElementById("cover").style.display="none";
+  document.getElementById("content").style.display="block";
+  music.play();
+}
+
+function toggleMusic(){
+  music.paused ? music.play() : music.pause();
+}
+
+// COUNTDOWN
+const target = new Date("2026-04-12T08:00:00").getTime();
+setInterval(()=>{
+  const now = new Date().getTime();
+  const diff = target - now;
+  if(diff < 0) return;
+  document.getElementById("d").innerText = Math.floor(diff/(1000*60*60*24));
+  document.getElementById("h").innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  document.getElementById("m").innerText = Math.floor((diff%(1000*60*60))/(1000*60));
+  document.getElementById("s").innerText = Math.floor((diff%(1000*60))/1000);
+},1000);
+</script>
+
+</body>
+</html>
