@@ -8,7 +8,6 @@
 <style>
 :root{
   --sogan:#5a3e2b;
-  --krem:#f4efe7;
   --emas:#b08a3c;
   --hitam:#2a1c14;
 }
@@ -22,7 +21,7 @@ body{
   color:var(--hitam);
 }
 
-/* ================= PAGE ================= */
+/* PAGE */
 .page{
   position:absolute;
   inset:0;
@@ -43,12 +42,10 @@ body{
   z-index:1;
 }
 
-/* ================= ORNAMEN ================= */
+/* ORNAMEN */
 .batik{
   position:absolute;
-  width:180px;
-  height:180px;
-  border-radius:50%;
+  width:180px;height:180px;border-radius:50%;
   background:repeating-linear-gradient(
     45deg,
     rgba(176,138,60,.25),
@@ -61,14 +58,13 @@ body{
 .b1{top:6%;left:6%}
 .b2{bottom:8%;right:8%;animation-delay:3s}
 .b3{top:18%;right:22%;animation-delay:6s}
-
 @keyframes alun{
   0%{transform:translateY(0)}
   50%{transform:translateY(-28px)}
   100%{transform:translateY(0)}
 }
 
-/* ================= BOX ================= */
+/* BOX */
 .box{
   background:rgba(255,255,255,.94);
   border-radius:28px;
@@ -78,56 +74,70 @@ body{
   box-shadow:0 12px 30px rgba(0,0,0,.15);
 }
 
-/* ================= FOTO ================= */
+/* FOTO */
 .photo{
-  width:200px;
-  height:260px;
-  object-fit:cover;
-  border-radius:22px;
-  margin-bottom:16px;
-  opacity:0;
-  transform:scale(.92);
+  width:200px;height:260px;object-fit:cover;
+  border-radius:22px;margin-bottom:16px;
+  opacity:0;transform:scale(.92);
   animation:fotoMasuk 2.4s ease forwards;
 }
 @keyframes fotoMasuk{to{opacity:1;transform:scale(1)}}
 
-/* ================= TEXT ================= */
+/* TEXT */
 h1{letter-spacing:6px;font-size:20px;color:var(--sogan)}
 h2{color:var(--emas)}
-.nama{font-size:24px;font-weight:bold;color:var(--sogan);line-height:1.4}
+.nama{font-size:24px;font-weight:bold;color:var(--sogan)}
 .divider{
   width:100px;height:2px;
   background:linear-gradient(90deg,transparent,var(--emas),transparent);
   margin:18px auto;
 }
 
-/* ================= MUSIC ================= */
+/* MUSIC */
 .music{
   position:fixed;
   bottom:18px;right:18px;
-  width:50px;height:50px;
-  border-radius:50%;
-  background:var(--sogan);
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
+  width:50px;height:50px;border-radius:50%;
+  background:var(--sogan);color:#fff;
+  display:flex;align-items:center;justify-content:center;
   z-index:10;
-  box-shadow:0 6px 20px rgba(0,0,0,.3);
 }
 audio{display:none}
 
-/* ================= TIRAI KERATON ================= */
-#tirai{
+/* NAVIGATION */
+.nav{
   position:fixed;
-  inset:0;
-  z-index:999;
-  background:#000;
+  bottom:20px;left:50%;
+  transform:translateX(-50%);
+  display:flex;gap:18px;
+  opacity:0;pointer-events:none;
+  transition:.4s;z-index:10;
+}
+.nav.show{opacity:1;pointer-events:auto}
+.nav button{
+  width:48px;height:48px;border-radius:50%;
+  border:2px solid var(--emas);
+  background:rgba(255,255,255,.85);
+  color:var(--sogan);
+  font-size:22px;
+}
+
+/* INDICATOR */
+#indicator{
+  position:fixed;
+  top:18px;right:18px;
+  padding:6px 12px;border-radius:14px;
+  background:rgba(255,255,255,.85);
+  border:1px solid var(--emas);
+  font-size:12px;z-index:10;
+}
+
+/* TIRAI */
+#tirai{
+  position:fixed;inset:0;z-index:999;background:#000;
 }
 .tirai{
-  position:absolute;
-  top:0;width:50%;height:100%;
+  position:absolute;top:0;width:50%;height:100%;
   background:linear-gradient(90deg,#3a2417,#5a3e2b,#3a2417);
   transition:transform 3s cubic-bezier(.22,1,.36,1);
 }
@@ -136,14 +146,10 @@ audio{display:none}
 #tirai.open .kiri{transform:translateX(-100%)}
 #tirai.open .kanan{transform:translateX(100%)}
 #tirai.hide{display:none}
-
 .tirai-ornamen{
-  position:absolute;
-  top:50%;left:50%;
+  position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);
-  color:#d4af6a;
-  font-size:64px;
-  text-shadow:0 0 20px rgba(212,175,106,.6);
+  color:#d4af6a;font-size:64px;
 }
 </style>
 </head>
@@ -162,81 +168,115 @@ audio{display:none}
 </audio>
 <div class="music" onclick="toggleMusic()">🎵</div>
 
-<!-- PAGE 1 -->
+<div id="indicator">1 / 8</div>
+
+<div class="nav">
+  <button onclick="prev()">‹</button>
+  <button onclick="next()">›</button>
+</div>
+
+<!-- PAGE 1 : COVER -->
 <section class="page active">
   <div class="batik b1"></div><div class="batik b2"></div>
   <div class="box">
     <img src="foto1.jpg" class="photo">
     <h1>UNDANGAN</h1>
     <h2>Pernikahan</h2>
-    <div class="nama">Nur Indryakni,S.Pd<br>&<br>Muhammad Erfan, S.E</div>
-    <p id="guest" style="font-size:13px;margin-top:10px"></p>
-    <p style="font-size:12px">Geser kiri / kanan</p>
+    <div class="nama">Ahmad Rizky Pratama<br>&<br>Aisyah Nur Khalifah</div>
+    <p id="guest" style="font-size:13px"></p>
+    <button id="btnOpen" onclick="openInvitation()"
+      style="margin-top:14px;padding:12px 26px;border-radius:24px;
+      border:2px solid var(--emas);background:transparent;color:var(--sogan)">
+      BUKA UNDANGAN
+    </button>
   </div>
 </section>
 
 <!-- PAGE 2 -->
-<section class="page">
-  <div class="batik b2"></div><div class="batik b3"></div>
-  <div class="box">
-    <i>
-      Kanthi idinipun Gusti Allah, pinanggih pasangan kang sarwa becik
-      kagem nggayuh rumah tangga sakinah, mawaddah, warahmah.
-    </i>
-    <div class="divider"></div>
-  </div>
-</section>
+<section class="page"><div class="box"><i>Kanthi idinipun Gusti Allah, pinanggih pasangan kang sarwa becik.</i></div></section>
 
 <!-- PAGE 3 -->
-<section class="page">
-  <div class="batik b1"></div><div class="batik b3"></div>
-  <div class="box">
-    <h2>Akad Nikah</h2>
-    Sabtu, 04 April 2026<br>08.00 WIB
-    <div class="divider"></div>
-    <h2>Resepsi</h2>
-    Sabtu, 04 April 2026<br>11.00 – 14.00 WIB
-  </div>
-</section>
+<section class="page"><div class="box"><h2>Akad Nikah</h2>Sabtu, 12 April 2026<br>08.00 WIB<div class="divider"></div><h2>Resepsi</h2>11.00 – 14.00 WIB</div></section>
 
 <!-- PAGE 4 -->
-<section class="page">
-  <div class="batik b1"></div><div class="batik b2"></div>
-  <div class="box">
-    Mugi acara punika pinaringan lancar lan berkah.<br><br>
-    <b>Iin & Erfan</b>
-  </div>
-</section>
+<section class="page"><div class="box">Mugi pinaringan berkah lan rahayu.</div></section>
+
+<!-- PAGE 5 RSVP -->
+<section class="page"><div class="box"><h2>RSVP</h2><input id="rsvpNama" placeholder="Nama"><br><br><select id="rsvpStatus"><option>Hadir</option><option>Tidak Hadir</option></select><br><br><button onclick="kirimRSVP()">Kirim</button></div></section>
+
+<!-- PAGE 6 BUKU TAMU -->
+<section class="page"><div class="box"><h2>Buku Tamu</h2><input id="guestNama" placeholder="Nama"><br><br><textarea id="guestPesan" placeholder="Ucapan & Doa"></textarea><br><br><button onclick="kirimUcapan()">Kirim</button></div></section>
+
+<!-- PAGE 7 LOKASI -->
+<section class="page"><div class="box"><h2>Lokasi</h2><a href="https://maps.google.com" target="_blank">Buka Google Maps</a></div></section>
+
+<!-- PAGE 8 GIFT -->
+<section class="page"><div class="box"><h2>Wedding Gift</h2>BCA 1234567890<br>a.n Ahmad</div></section>
 
 <script>
-let pages=document.querySelectorAll(".page"),i=0;
+let pages=document.querySelectorAll(".page"),
+i=0,total=pages.length,
+nav=document.querySelector(".nav"),
+indicator=document.getElementById("indicator"),
+opened=false;
 const music=document.getElementById("music");
 
-// AUTO
-setInterval(()=>next(),7000);
+function openInvitation(){
+  opened=true;
+  document.getElementById("btnOpen").style.display="none";
+  music.play();showNav();
+}
 
-// SWIPE
+function update(){
+  pages.forEach(p=>p.classList.remove("active"));
+  pages[i].classList.add("active");
+  indicator.innerText=(i+1)+" / "+total;
+}
+
+function next(){if(!opened)return;i=(i+1)%total;update();showNav();}
+function prev(){if(!opened)return;i=(i-1+total)%total;update();showNav();}
+function toggleMusic(){music.paused?music.play():music.pause();}
+
+function showNav(){
+  nav.classList.add("show");
+  clearTimeout(nav.timer);
+  nav.timer=setTimeout(()=>nav.classList.remove("show"),2500);
+}
+
+document.addEventListener("click",e=>{
+  if(!opened)return;
+  if(!e.target.closest("button")&&!e.target.closest("input")&&!e.target.closest("textarea")){
+    next();
+  }
+});
+
 let sx=0;
 document.addEventListener("touchstart",e=>sx=e.touches[0].clientX);
 document.addEventListener("touchend",e=>{
+  if(!opened)return;
   let ex=e.changedTouches[0].clientX;
-  if(sx-ex>50) next();
-  if(ex-sx>50) prev();
+  if(sx-ex>50)next();
+  if(ex-sx>50)prev();
 });
 
-function next(){pages[i].classList.remove("active");i=(i+1)%pages.length;pages[i].classList.add("active")}
-function prev(){pages[i].classList.remove("active");i=(i-1+pages.length)%pages.length;pages[i].classList.add("active")}
-function toggleMusic(){music.paused?music.play():music.pause()}
-
-// TIRAI OPEN
 window.addEventListener("load",()=>{
-  setTimeout(()=>{document.getElementById("tirai").classList.add("open");music.play()},800);
-  setTimeout(()=>{document.getElementById("tirai").classList.add("hide")},4200);
+  setTimeout(()=>document.getElementById("tirai").classList.add("open"),800);
+  setTimeout(()=>document.getElementById("tirai").classList.add("hide"),4200);
 });
 
-// NAMA TAMU
 const q=new URLSearchParams(location.search);
-if(q.get("to")) document.getElementById("guest").innerText="Yth. "+q.get("to");
+if(q.get("to"))document.getElementById("guest").innerText="Yth. "+q.get("to");
+
+function kirimRSVP(){
+  let n=rsvpNama.value,s=rsvpStatus.value;
+  if(!n)return alert("Isi nama");
+  window.open(`https://wa.me/6281234567890?text=RSVP:%0ANama:${n}%0AStatus:${s}`);
+}
+function kirimUcapan(){
+  let n=guestNama.value,p=guestPesan.value;
+  if(!n||!p)return alert("Lengkapi");
+  window.open(`https://wa.me/6281234567890?text=Buku Tamu:%0ANama:${n}%0APesan:${p}`);
+}
 </script>
 
 </body>
